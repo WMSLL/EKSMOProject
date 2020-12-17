@@ -1,41 +1,63 @@
 ﻿using System.Data;
 using System;
+using System.IO;
 using System.Data.SqlClient;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace ImporDateFromExceltoDB
 {
     class Program
     {
+      static  string connectionString = "Data Source =172.27.1.26; Initial Catalog = ILS; User ID =manh; Password =1q2w#E$R";
+        static string fileName = @"Коледино.xlsx";
+        static string folder = @"C:\Проэкты MS VS\";
+        static string newFolder= @"C:\Проэкты MS VS\OLD_wildberis\";
         static void Main(string[] args)
         {
-            string ConnectionString = "Data Source =172.27.1.26; Initial Catalog = ILS; User ID =manh; Password =1q2w#E$R";
+           
+            Timer t = new Timer(TimerCallback, null, 0, 10000);
 
-            SqlConnection sqlConnect = new SqlConnection(ConnectionString);
-            sqlConnect.Open();
+            Console.ReadLine();
+            
 
-
-           var dataRage= ReadExel();
-
-            foreach (DataRow dr in dataRage.Rows)
+            static void TimerCallback(Object o)
             {
-               // Console.WriteLine($"values({dr[0]},{dr[1]}");
-               var sqlExpression = $"insert into ils.dbo.TestImportExel (item,code) values('{dr[0]}','{dr[1]}')";
-               SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
-               command.ExecuteNonQuery();
+                SqlConnection sqlConnect = new SqlConnection(connectionString);
+                sqlConnect.Open();
+                var dataRage = ReadExel();
+
+               
+              //  File.Delete(folder + fileName);
+                foreach (DataRow dr in dataRage.Rows)
+                {
+                    // Console.WriteLine($"values({dr[0]},{dr[1]}");
+                    var sqlExpression = $"insert into ils.dbo.TestImportExel (item,code) values('{dr[0]}','{dr[1]}')";
+                    SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
+                    command.ExecuteNonQuery();
+
+                }
+
+                sqlConnect.Close();
+                File.Move(folder + fileName, newFolder);
+                Console.WriteLine("Таймер тикнул");
+                Console.ReadKey();
+
             }
+
+
 
             static DataTable ReadExel()
             {
                 Excel.Application application = new Excel.Application();
+
                 DataTable myTable = new DataTable("MyDataTable");
                 if (application == null)
                 {
                     Console.WriteLine("EXCEL not installed");
                     return myTable;
                 }
-                Excel.Workbook excelBook = application.Workbooks.Open(@"C:\Проэкты MS VS\Коледино.xlsx");
+                Excel.Workbook excelBook = application.Workbooks.Open(folder+fileName);
                 Excel._Worksheet excelSheet = application.Sheets[1];
                 Excel.Range excelRange = excelSheet.UsedRange;
                 int rows = excelRange.Rows.Count;
@@ -49,6 +71,23 @@ namespace ImporDateFromExceltoDB
                     myNewRow["LastName"] = excelRange.Cells.Value2[i, 2];
                     myTable.Rows.Add(myNewRow);
                 }
+
+                System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
+                foreach (var p in processes)
+                {
+                    if (!string.IsNullOrEmpty(p.ProcessName))
+                    {
+                        try
+                        {
+                            p.Kill();
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                    }
+                }
+
                 return myTable;
             }
         }
