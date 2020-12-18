@@ -9,52 +9,85 @@ namespace ImporDateFromExceltoDB
 {
     class Program
     {
-        static string connectionString = "Data Source =172.27.1.26; Initial Catalog = ILS; User ID =manh; Password =1q2w#E$R";
-        static string fileName = @"C:\Проэкты MS VS\Коледино.xlsx";
-        static string newFolder = @"C:\Проэкты MS VS\OLD_wildberis\Коледино";
+
+
+      //  static string connectionString = "Data Source =172.27.1.25; Initial Catalog = ILS; User ID =manh; Password =OfLpod8d";
+      //  static string fileName1 = @"C:\Проэкты MS VS\Коледино";
+        static string Folder2 = @"\\w-srvfile\wailberis\";
+        static string newFolder = @"\\w-srvfile\wailberis\old_wailberis\Коледино";
         static SqlConnection sqlConnect = new SqlConnection(connectionString);
         static void Main(string[] args)
         {
             sqlConnect.Open();
-            Timer t = new Timer(TimerCallback, null, 0, 20000);
+            Timer timer = new Timer(TimerCallback, null, 0, 50000);
+           
             Console.ReadLine();
             static void TimerCallback(Object o)
             {
-                DateTimeOffset date = DateTimeOffset.Now;
-                var dataRage = ReadExel();
-                foreach (DataRow dr in dataRage.Rows)
+                
+                Console.WriteLine("sTART");
+                var dir = new DirectoryInfo(Folder2); // папка с файлами 
+
+                foreach (FileInfo file in dir.GetFiles())
                 {
-                    var sqlExpression = $"insert into ils.dbo.TestImportExel (item,code) values('{dr[0]}','{dr[1]}')";
-                    SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
-                    command.ExecuteNonQuery();
-                }
-                System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
-                foreach (var p in processes)
-                {
-                    if (!string.IsNullOrEmpty(p.ProcessName))
+                    if (file.Name!=null)
                     {
-                        try
+                        
+                    }
+                    //Console.WriteLine();
+                    DateTimeOffset date = DateTimeOffset.Now;
+
+                    var filename = Path.GetFileNameWithoutExtension(file.Name);
+
+                    var dataRage = ReadExel(Folder2 + filename + ".xlsx");
+
+
+                    foreach (DataRow dr in dataRage.Rows)
+                    {
+                        // var sqlExpression = $"insert into ils.dbo.TestImportExel (item,code) values('{dr[0]}','{dr[1]}')";
+                        var sqlExpression = $@"if Exists(Select *From [EKS_OrderSSCCChildrenWorld] where item='{dr[0]}' and [code]='{dr[1]}' ) begin
+                                                                                                           return
+                                                                                                           end 
+                                                                               else
+                                                                               begin
+                                                                               insert into [EKS_OrderSSCCChildrenWorld] ([item],	[code] ) values ('{dr[0]}','{dr[1]}')
+                                                                               end";
+                        SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
+                        command.ExecuteNonQuery();
+                    }
+                    //Thread.Sleep(5000);
+                    Console.WriteLine($"Убиваем процесс");
+                    System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
+                    foreach (var p in processes)
+                    {
+                        if (!string.IsNullOrEmpty(p.ProcessName))
                         {
-                            p.Kill();
-                        }
-                        catch (Exception)
-                        {
-                            throw;
+                            try
+                            {
+                                p.Kill();
+                            }
+                            catch (Exception)
+                            {
+                                throw;
+                            }
                         }
                     }
-                }
-                try
-                {
-                    File.Move(fileName, newFolder + date.ToString().Replace(":", "_").Replace(" ", "") + ".xlsx");
-                }
-                catch (System.IO.FileNotFoundException)
-                {
-                    Console.WriteLine($"В папке {fileName} нет файла");
+                   // Thread.Sleep(3000);
+                    Console.WriteLine($"Начинаем перемещать файл");
+                    try
+                    {
+                        File.Move(Folder2 + filename + ".xlsx", newFolder + date.ToString().Replace(":", "_").Replace(" ", "") + ".xlsx");
+                        Console.WriteLine(Folder2 + filename + ".xlsx"+" Перемещен");
+                    }
+                    catch (System.IO.FileNotFoundException)
+                    {
+                        Console.WriteLine($"В папке {Folder2 + filename + ".xlsx"} нет файла");
+                    }
                 }
                 Console.WriteLine("Таймер тикнул");
                 Console.ReadKey();
             }
-            static DataTable ReadExel()
+            static DataTable ReadExel(string filename)
             {
                 Excel.Application application = new Excel.Application();
                 DataTable myTable = new DataTable("MyDataTable");
@@ -65,7 +98,7 @@ namespace ImporDateFromExceltoDB
                 }
                 try
                 {
-                    Excel.Workbook excelBook = application.Workbooks.Open(fileName);
+                    Excel.Workbook excelBook = application.Workbooks.Open(filename);
                     Excel._Worksheet excelSheet = application.Sheets[1];
                     Excel.Range excelRange = excelSheet.UsedRange;
                     int rows = excelRange.Rows.Count;
@@ -92,7 +125,7 @@ namespace ImporDateFromExceltoDB
                 catch (System.Runtime.InteropServices.COMException)
                 {
 
-                    Console.WriteLine($"В папке {fileName} нет файла");
+                    Console.WriteLine($"В папке {filename} нет файла");
                 }
                 return myTable;
             }
