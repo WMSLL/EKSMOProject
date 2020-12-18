@@ -11,21 +11,21 @@ namespace ImporDateFromExceltoDB
     {
 
 
-      //  static string connectionString = "Data Source =172.27.1.25; Initial Catalog = ILS; User ID =manh; Password =OfLpod8d";
-      //  static string fileName1 = @"C:\Проэкты MS VS\Коледино";
+        // static string connectionString = "Data Source =172.27.1.25; Initial Catalog = ILS; User ID =manh; Password =OfLpod8d"; 
+        static string connectionString = @"Data Source=172.27.1.25\SRVSQL;Initial Catalog=ILS;Persist Security Info=True;User ID=szkoadmin;Password=#t1h2u3$;";
         static string Folder2 = @"\\w-srvfile\wailberis\";
         static string newFolder = @"\\w-srvfile\wailberis\old_wailberis\Коледино";
         static SqlConnection sqlConnect = new SqlConnection(connectionString);
         static void Main(string[] args)
         {
             sqlConnect.Open();
-            Timer timer = new Timer(TimerCallback, null, 0, 50000);
+            Timer timer = new Timer(TimerCallback, null, 0, 1_800_000);
            
             Console.ReadLine();
             static void TimerCallback(Object o)
             {
                 
-                Console.WriteLine("sTART");
+                Console.WriteLine("Start");
                 var dir = new DirectoryInfo(Folder2); // папка с файлами 
 
                 foreach (FileInfo file in dir.GetFiles())
@@ -37,6 +37,7 @@ namespace ImporDateFromExceltoDB
                     //Console.WriteLine();
                     DateTimeOffset date = DateTimeOffset.Now;
 
+                    Console.WriteLine($"считываем EXCEL");
                     var filename = Path.GetFileNameWithoutExtension(file.Name);
 
                     var dataRage = ReadExel(Folder2 + filename + ".xlsx");
@@ -56,7 +57,7 @@ namespace ImporDateFromExceltoDB
                         command.ExecuteNonQuery();
                     }
                     //Thread.Sleep(5000);
-                    Console.WriteLine($"Убиваем процесс");
+                    Console.WriteLine($"Убиваем процесс EXCEL");
                     System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
                     foreach (var p in processes)
                     {
@@ -84,7 +85,7 @@ namespace ImporDateFromExceltoDB
                         Console.WriteLine($"В папке {Folder2 + filename + ".xlsx"} нет файла");
                     }
                 }
-                Console.WriteLine("Таймер тикнул");
+                Console.WriteLine("Стоп");
                 Console.ReadKey();
             }
             static DataTable ReadExel(string filename)
