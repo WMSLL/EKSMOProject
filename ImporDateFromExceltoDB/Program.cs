@@ -8,10 +8,7 @@ using System.Threading;
 namespace ImporDateFromExceltoDB
 {
     class Program
-    {
-
-
-        // static string connectionString = "Data Source =172.27.1.25; Initial Catalog = ILS; User ID =manh; Password =OfLpod8d"; 
+    {        
         static string connectionString = @"Data Source=172.27.1.25\SRVSQL;Initial Catalog=ILS;Persist Security Info=True;User ID=szkoadmin;Password=#t1h2u3$;";
         static string Folder2 = @"\\w-srvfile\wailberis\";
         static string newFolder = @"\\w-srvfile\wailberis\old_wailberis\Коледино";
@@ -20,16 +17,12 @@ namespace ImporDateFromExceltoDB
         {
             sqlConnect.Open();
             Timer timer = new Timer(TimerCallback, null, 0, 1_800_000);
-
-
-
             Console.ReadLine();
             static void TimerCallback(Object o)
             {
                 ReadExecss readExecss = new ReadExecss();
                 Console.WriteLine("Start");
                 var dir = new DirectoryInfo(Folder2); // папка с файлами 
-
                 foreach (FileInfo file in dir.GetFiles())
                 {
                     DateTimeOffset date = DateTimeOffset.Now;
