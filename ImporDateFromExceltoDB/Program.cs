@@ -8,7 +8,7 @@ using System.Threading;
 namespace ImporDateFromExceltoDB
 {
     class Program
-    {        
+    {
         static string connectionString = @"Data Source=172.27.1.25\SRVSQL;Initial Catalog=ILS;Persist Security Info=True;User ID=szkoadmin;Password=#t1h2u3$;";
         static string Folder2 = @"\\w-srvfile\wailberis\";
         static string newFolder = @"\\w-srvfile\wailberis\old_wailberis\Коледино";
@@ -26,52 +26,55 @@ namespace ImporDateFromExceltoDB
                 foreach (FileInfo file in dir.GetFiles())
                 {
                     DateTimeOffset date = DateTimeOffset.Now;
-                    
+                    var typeFile = Path.GetExtension(file.FullName);
+
+
                     var filename = Path.GetFileNameWithoutExtension(file.Name);
-                    if (filename== ".owncloudsync" || filename == "._sync_6f1f320acad9" || filename == "Desktop")
-                    {                     
-                        continue;
-                    }
-                    Console.WriteLine($"считываем EXCEL");
-                    readExecss.ReadExel(Folder2 + filename + ".xlsx");
-                    var dataRage = readExecss.Data;
-                    foreach (DataRow dr in dataRage.Rows)
-                    {                        
-                        var sqlExpression = $@"if Exists(Select *From [EKS_OrderSSCCChildrenWorld] where item='{dr[0]}' and [code]='{dr[1]}' ) begin
+                    if (typeFile == ".xlsx")
+                    {
+
+
+                        Console.WriteLine($"считываем EXCEL");
+                        readExecss.ReadExel(Folder2 + filename + ".xlsx");
+                        var dataRage = readExecss.Data;
+                        foreach (DataRow dr in dataRage.Rows)
+                        {
+                            var sqlExpression = $@"if Exists(Select *From [EKS_OrderSSCCChildrenWorld] where item='{dr[0]}' and [code]='{dr[1]}' ) begin
                                                                                                            return
                                                                                                            end 
                                                                                else
                                                                                begin
                                                                                insert into [EKS_OrderSSCCChildrenWorld] ([item],	[code] ) values ('{dr[0]}','{dr[1]}')
                                                                                end";
-                        SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
-                        command.ExecuteNonQuery();
-                    }                   
-                    Console.WriteLine($"Убиваем процесс EXCEL");
-                    System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
-                    foreach (var p in processes)
-                    {
-                        if (!string.IsNullOrEmpty(p.ProcessName))
+                            SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
+                            command.ExecuteNonQuery();
+                        }
+                        Console.WriteLine($"Убиваем процесс EXCEL");
+                        System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
+                        foreach (var p in processes)
                         {
-                            try
+                            if (!string.IsNullOrEmpty(p.ProcessName))
                             {
-                                p.Kill();
-                            }
-                            catch (Exception)
-                            {
-                                throw;
+                                try
+                                {
+                                    p.Kill();
+                                }
+                                catch (Exception)
+                                {
+                                    throw;
+                                }
                             }
                         }
-                    }                    
-                    Console.WriteLine($"Начинаем перемещать файл");
-                    try
-                    {
-                        File.Move(Folder2 + filename + ".xlsx", newFolder + date.ToString().Replace(":", "_").Replace(" ", "") + ".xlsx");
-                        Console.WriteLine(Folder2 + filename + ".xlsx" + " Перемещен");
-                    }
-                    catch (System.IO.FileNotFoundException)
-                    {
-                        Console.WriteLine($"В папке {Folder2 + filename + ".xlsx"} нет файла");
+                        Console.WriteLine($"Начинаем перемещать файл");
+                        try
+                        {
+                            File.Move(Folder2 + filename + ".xlsx", newFolder + date.ToString().Replace(":", "_").Replace(" ", "") + ".xlsx");
+                            Console.WriteLine(Folder2 + filename + ".xlsx" + " Перемещен");
+                        }
+                        catch (System.IO.FileNotFoundException)
+                        {
+                            Console.WriteLine($"В папке {Folder2 + filename + ".xlsx"} нет файла");
+                        }
                     }
                 }
                 Console.WriteLine("Стоп");
