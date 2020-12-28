@@ -26,8 +26,13 @@ namespace ImporDateFromExceltoDB
                 foreach (FileInfo file in dir.GetFiles())
                 {
                     DateTimeOffset date = DateTimeOffset.Now;
-                    Console.WriteLine($"считываем EXCEL");
+                    
                     var filename = Path.GetFileNameWithoutExtension(file.Name);
+                    if (filename== ".owncloudsync" || filename == "._sync_6f1f320acad9" || filename == "Desktop")
+                    {                     
+                        continue;
+                    }
+                    Console.WriteLine($"считываем EXCEL");
                     readExecss.ReadExel(Folder2 + filename + ".xlsx");
                     var dataRage = readExecss.Data;
                     foreach (DataRow dr in dataRage.Rows)
