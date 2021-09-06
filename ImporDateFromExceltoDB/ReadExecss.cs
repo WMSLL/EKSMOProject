@@ -33,7 +33,7 @@ namespace ImporDateFromExceltoDB
                     DataRow myNewRow = myTable.NewRow();
                     myNewRow["Barcodes"] = excelRange.Cells.Value2[i, 1].ToString(); // .ToString(); //string
                     myNewRow["Zakaz"] = excelRange.Cells.Value2[i, 2].ToString();
-                    myNewRow["Order"] = excelRange.Cells.Value2[i, 3].ToString();
+                    myNewRow["Order"] = null;//excelRange.Cells.Value2[i, 3].ToString();
                     myTable.Rows.Add(myNewRow);
                 }
                 if (excelBook != null)
