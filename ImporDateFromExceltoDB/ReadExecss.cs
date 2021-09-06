@@ -31,9 +31,18 @@ namespace ImporDateFromExceltoDB
                 for (int i = 2; i <= rows; i++)
                 {
                     DataRow myNewRow = myTable.NewRow();
+                    string orders = "";
+                    if (excelRange.Cells.Value2[i, 3].ToString()==null)
+                    {
+                        orders = "!!!";
+                    }
+                    else
+                    {
+                        orders=excelRange.Cells.Value2[i, 3].ToString();
+                    }
                     myNewRow["Barcodes"] = excelRange.Cells.Value2[i, 1].ToString(); // .ToString(); //string
                     myNewRow["Zakaz"] = excelRange.Cells.Value2[i, 2].ToString();
-                    myNewRow["Order"] = null;//excelRange.Cells.Value2[i, 3].ToString();
+                    myNewRow["Order"] = orders;
                     myTable.Rows.Add(myNewRow);
                 }
                 if (excelBook != null)
