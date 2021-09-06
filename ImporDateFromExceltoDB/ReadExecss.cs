@@ -25,13 +25,15 @@ namespace ImporDateFromExceltoDB
                 Excel.Range excelRange = excelSheet.UsedRange;
                 int rows = excelRange.Rows.Count;
                 int cols = excelRange.Columns.Count;
-                myTable.Columns.Add("FirstName", typeof(string));
-                myTable.Columns.Add("LastName", typeof(string));
+                myTable.Columns.Add("Barcodes", typeof(string));
+                myTable.Columns.Add("Zakaz", typeof(string));
+                myTable.Columns.Add("Order", typeof(string));
                 for (int i = 2; i <= rows; i++)
                 {
                     DataRow myNewRow = myTable.NewRow();
-                    myNewRow["FirstName"] = excelRange.Cells.Value2[i, 1].ToString(); // .ToString(); //string
-                    myNewRow["LastName"] = excelRange.Cells.Value2[i, 2].ToString();
+                    myNewRow["Barcodes"] = excelRange.Cells.Value2[i, 1].ToString(); // .ToString(); //string
+                    myNewRow["Zakaz"] = excelRange.Cells.Value2[i, 2].ToString();
+                    myNewRow["Order"] = excelRange.Cells.Value2[i, 3].ToString();
                     myTable.Rows.Add(myNewRow);
                 }
                 if (excelBook != null)
