@@ -32,7 +32,7 @@ namespace ImporDateFromExceltoDB
                 {
                     DataRow myNewRow = myTable.NewRow();
                     string orders = "";
-                    if (excelRange.Cells.Value2[i, 3].ToString()==null)
+                    if (cols<3)
                     {
                         orders = "!!!";
                     }
