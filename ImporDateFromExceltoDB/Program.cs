@@ -44,7 +44,7 @@ namespace ImporDateFromExceltoDB
                                                                                                            end 
                                                                                else
                                                                                begin
-                                                                               insert into [EKS_OrderSSCCChildrenWorld] ([item],	[code] ) values ('{dr[0]}','{dr[1]}')
+                                                                               insert into [EKS_OrderSSCCChildrenWorld] ([item],	[code],[OrderId] ) values ('{dr[0]}','{dr[1]}','{dr[2]}')
                                                                                end";
                             SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
                             command.ExecuteNonQuery();
