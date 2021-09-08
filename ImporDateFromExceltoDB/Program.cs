@@ -35,7 +35,7 @@ namespace ImporDateFromExceltoDB
 
 
                         Console.WriteLine($"Read EXCEL");
-                        readExecss.ReadExel(Folder2 + filename + ".xlsx");
+                        readExecss.ReadExel(Folder2 + filename + typeFile);
                         var dataRage = readExecss.Data;
                         foreach (DataRow dr in dataRage.Rows)
                         {
