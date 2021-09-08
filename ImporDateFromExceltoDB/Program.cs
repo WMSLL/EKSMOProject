@@ -30,7 +30,7 @@ namespace ImporDateFromExceltoDB
 
 
                     var filename = Path.GetFileNameWithoutExtension(file.Name);
-                    if (typeFile == ".xlsx" || typeFile == ".xls" )
+                    if (typeFile == ".xlsx" )
                     {
 
 
