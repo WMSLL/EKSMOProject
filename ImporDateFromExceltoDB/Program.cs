@@ -30,11 +30,11 @@ namespace ImporDateFromExceltoDB
 
 
                     var filename = Path.GetFileNameWithoutExtension(file.Name);
-                    if (typeFile == ".xlsx" )
+                    if (typeFile == ".xlsx" || typeFile == ".xls")
                     {
 
 
-                        Console.WriteLine($"считываем EXCEL");
+                        Console.WriteLine($"Read EXCEL");
                         readExecss.ReadExel(Folder2 + filename + ".xlsx");
                         var dataRage = readExecss.Data;
                         foreach (DataRow dr in dataRage.Rows)
