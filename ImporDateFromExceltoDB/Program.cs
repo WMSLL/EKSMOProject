@@ -49,7 +49,7 @@ namespace ImporDateFromExceltoDB
                             SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
                             command.ExecuteNonQuery();
                         }
-                        Console.WriteLine($"Убиваем процесс EXCEL");
+                        Console.WriteLine($"kill process EXCEL");
                         System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
                         foreach (var p in processes)
                         {
@@ -65,19 +65,19 @@ namespace ImporDateFromExceltoDB
                                 }
                             }
                         }
-                        Console.WriteLine($"Начинаем перемещать файл");
+                        Console.WriteLine($"start transfer file");
                         try
                         {
                             File.Move(Folder2 + filename + ".xlsx", newFolder + date.ToString().Replace(":", "_").Replace(" ", "") + ".xlsx");
-                            Console.WriteLine(Folder2 + filename + ".xlsx" + " Перемещен");
+                            Console.WriteLine(Folder2 + filename + ".xlsx" + " Transfer complict");
                         }
                         catch (System.IO.FileNotFoundException)
                         {
-                            Console.WriteLine($"В папке {Folder2 + filename + ".xlsx"} нет файла");
+                            Console.WriteLine($"In folder {Folder2 + filename + ".xlsx"} file not faund");
                         }
                     }
                 }
-                Console.WriteLine("Стоп");
+                Console.WriteLine("Stop");
                 Console.ReadKey();
             }
         }
