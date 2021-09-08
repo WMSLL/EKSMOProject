@@ -68,7 +68,7 @@ namespace ImporDateFromExceltoDB
                         Console.WriteLine($"start transfer file");
                         try
                         {
-                            File.Move(Folder2 + filename + ".xlsx", newFolder + date.ToString().Replace(":", "_").Replace(" ", "") + ".xlsx");
+                            File.Move(Folder2 + filename + typeFile, newFolder + date.ToString().Replace(":", "_").Replace(" ", "") + typeFile);
                             Console.WriteLine(Folder2 + filename + ".xlsx" + " Transfer complict");
                         }
                         catch (System.IO.FileNotFoundException)
