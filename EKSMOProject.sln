@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImporDateFromExceltoDB", "I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqLesson", "LinqLesson\LinqLesson.csproj", "{0C47A6C6-4B3C-45A7-90E9-752EE6EDDECE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLessons", "WpfLessons\WpfLessons.csproj", "{FF60D9DD-7B68-4455-8684-A46453B04C38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0C47A6C6-4B3C-45A7-90E9-752EE6EDDECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C47A6C6-4B3C-45A7-90E9-752EE6EDDECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C47A6C6-4B3C-45A7-90E9-752EE6EDDECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF60D9DD-7B68-4455-8684-A46453B04C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF60D9DD-7B68-4455-8684-A46453B04C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF60D9DD-7B68-4455-8684-A46453B04C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF60D9DD-7B68-4455-8684-A46453B04C38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
