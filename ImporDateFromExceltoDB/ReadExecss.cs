@@ -3,11 +3,10 @@ using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
 namespace ImporDateFromExceltoDB
 {
-    
+
     class ReadExecss
     {
-        public  DataTable Data { get; set; }
-       
+        public DataTable Data { get; set; }
 
         public void ReadExel(string filename)
         {
@@ -16,7 +15,7 @@ namespace ImporDateFromExceltoDB
             if (application == null)
             {
                 Console.WriteLine("EXCEL not installed");
-                Data= myTable;
+                Data = myTable;
             }
             try
             {
@@ -32,13 +31,13 @@ namespace ImporDateFromExceltoDB
                 {
                     DataRow myNewRow = myTable.NewRow();
                     string orders = "";
-                    if (cols<3)
+                    if (cols < 3)
                     {
                         orders = "!!!";
                     }
                     else
                     {
-                        orders=excelRange.Cells.Value2[i, 3].ToString();
+                        orders = excelRange.Cells.Value2[i, 3].ToString();
                     }
                     myNewRow["Barcodes"] = excelRange.Cells.Value2[i, 1].ToString(); // .ToString(); //string
                     myNewRow["Zakaz"] = excelRange.Cells.Value2[i, 2].ToString();
@@ -57,10 +56,9 @@ namespace ImporDateFromExceltoDB
             }
             catch (System.Runtime.InteropServices.COMException)
             {
-
                 Console.WriteLine($"В папке {filename} нет файла");
             }
-            Data= myTable;
+            Data = myTable;
         }
     }
 }
