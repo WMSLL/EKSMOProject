@@ -39,13 +39,14 @@ namespace ImporDateFromExceltoDB
                         var dataRage = readExecss.Data;
                         foreach (DataRow dr in dataRage.Rows)
                         {
-                            var sqlExpression = $@"if Exists(Select *From [EKS_OrderSSCCChildrenWorld] where item='{dr[0]}' and [code]='{dr[1]}' ) begin
+                            var sqlExpression = $@"if Exists(Select *From [EKS_OrderSSCCChildrenWorld] where item=Ltrim(Rtrim('{dr[0]}')) and [code]=Ltrim(Rtrim('{dr[1]}')) ) begin
                                                                                                            return
                                                                                                            end 
                                                                                else
                                                                                begin
                                                                                insert into [EKS_OrderSSCCChildrenWorld] ([item],	[code],[OrderId] ) values (Ltrim(Rtrim('{dr[0]}')),Ltrim(Rtrim('{dr[1]}')) ,Ltrim(Rtrim('{dr[2]}')) )
                                                                                end";
+                            Console.WriteLine($"item: Ltrim(Rtrim('{dr[0]}')), Code: Ltrim(Rtrim('{dr[1]}')) ,Orders: Ltrim(Rtrim('{dr[2]}')) ");
                             SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
                             command.ExecuteNonQuery();
                         }
@@ -58,10 +59,11 @@ namespace ImporDateFromExceltoDB
                                 try
                                 {
                                     p.Kill();
+                                    Console.WriteLine($"kill process EXCEL Successfully");
                                 }
                                 catch (Exception)
                                 {
-                                    throw;
+                                    Console.WriteLine($"kill process EXCEL FAILED!!!!");
                                 }
                             }
                         }
