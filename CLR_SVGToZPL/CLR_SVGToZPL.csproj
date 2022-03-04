@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Svg.Contrib.Render.ZPL" Version="0.21.0" />
+  </ItemGroup>
+
 </Project>

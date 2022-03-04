@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqLesson", "LinqLesson\Li
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfLessons", "WpfLessons\WpfLessons.csproj", "{FF60D9DD-7B68-4455-8684-A46453B04C38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLR_SVGToZPL", "CLR_SVGToZPL\CLR_SVGToZPL.csproj", "{97909406-A269-4BBE-A345-6355A17AD09E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLR_SVGToZPL", "CLR_SVGToZPL\CLR_SVGToZPL.csproj", "{97909406-A269-4BBE-A345-6355A17AD09E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SVGtoZPL22", "SVGtoZPL22\SVGtoZPL22.csproj", "{A4218523-5123-47FD-9E1F-4FFC45523C2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{97909406-A269-4BBE-A345-6355A17AD09E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97909406-A269-4BBE-A345-6355A17AD09E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97909406-A269-4BBE-A345-6355A17AD09E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4218523-5123-47FD-9E1F-4FFC45523C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4218523-5123-47FD-9E1F-4FFC45523C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4218523-5123-47FD-9E1F-4FFC45523C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4218523-5123-47FD-9E1F-4FFC45523C2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
