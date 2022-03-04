@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Svg.Contrib.Render.ZPL" Version="0.21.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0-preview.1.22076.8" />
+  </ItemGroup>
+
+</Project>

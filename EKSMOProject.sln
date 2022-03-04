@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImporDateFromExceltoDB", "I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqLesson", "LinqLesson\LinqLesson.csproj", "{0C47A6C6-4B3C-45A7-90E9-752EE6EDDECE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLessons", "WpfLessons\WpfLessons.csproj", "{FF60D9DD-7B68-4455-8684-A46453B04C38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfLessons", "WpfLessons\WpfLessons.csproj", "{FF60D9DD-7B68-4455-8684-A46453B04C38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SVGToZpl2", "SVGToZpl2\SVGToZpl2.csproj", "{4B6BC9CB-E8E4-4FEB-8DEA-2832DCBE1DA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SVGtoZPL22", "SVGtoZPL22\SVGtoZPL22.csproj", "{5084BFCA-2C41-4B71-AE57-C501CBBF4EA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{FF60D9DD-7B68-4455-8684-A46453B04C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF60D9DD-7B68-4455-8684-A46453B04C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF60D9DD-7B68-4455-8684-A46453B04C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B6BC9CB-E8E4-4FEB-8DEA-2832DCBE1DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B6BC9CB-E8E4-4FEB-8DEA-2832DCBE1DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B6BC9CB-E8E4-4FEB-8DEA-2832DCBE1DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B6BC9CB-E8E4-4FEB-8DEA-2832DCBE1DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5084BFCA-2C41-4B71-AE57-C501CBBF4EA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5084BFCA-2C41-4B71-AE57-C501CBBF4EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5084BFCA-2C41-4B71-AE57-C501CBBF4EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5084BFCA-2C41-4B71-AE57-C501CBBF4EA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

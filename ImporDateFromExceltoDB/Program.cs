@@ -17,7 +17,7 @@ namespace ImporDateFromExceltoDB
         static void Main(string[] args)
         {
             sqlConnect.Open();
-            Timer timer = new Timer(TimerCallback, null, 0, 1_800_000);
+            Timer timer = new Timer(TimerCallback, null, 0, 300_000);
             Console.ReadLine();
             static void TimerCallback(Object o)
             {
