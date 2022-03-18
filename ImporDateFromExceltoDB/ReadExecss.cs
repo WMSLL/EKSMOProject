@@ -37,12 +37,20 @@ namespace ImporDateFromExceltoDB
                     }
                     else
                     {
-                        orders = excelRange.Cells.Value2[i, 3].ToString();
+                        if (excelRange.Cells.Value2[i, 3]!=null)
+                        {
+                            orders = excelRange.Cells.Value2[i, 3].ToString();
+                        }
+                       
                     }
-                    myNewRow["Barcodes"] = excelRange.Cells.Value2[i, 1].ToString(); // .ToString(); //string
-                    myNewRow["Zakaz"] = excelRange.Cells.Value2[i, 2].ToString();
-                    myNewRow["Order"] = orders;
-                    myTable.Rows.Add(myNewRow);
+                    if (excelRange.Cells.Value2[i, 1]!=null && excelRange.Cells.Value2[i, 2]!=null && orders!=null)
+                    {
+                        myNewRow["Barcodes"] = excelRange.Cells.Value2[i, 1].ToString(); // .ToString(); //string
+                        myNewRow["Zakaz"] = excelRange.Cells.Value2[i, 2].ToString();
+                        myNewRow["Order"] = orders;
+                        myTable.Rows.Add(myNewRow);
+                    }
+                    
                 }
                 if (excelBook != null)
                 {

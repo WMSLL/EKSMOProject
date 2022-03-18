@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Svg.Contrib.Render.FingerPrint" Version="0.21.0" />
     <PackageReference Include="Svg.Contrib.Render.ZPL" Version="0.21.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
   </ItemGroup>
