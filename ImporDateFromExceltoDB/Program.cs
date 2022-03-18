@@ -11,8 +11,8 @@ namespace ImporDateFromExceltoDB
     class Program
     {
         static string connectionString = @"Data Source=172.27.1.25\SRVSQL;Initial Catalog=ILS;Persist Security Info=True;User ID=szkoadmin;Password=#t1h2u3$;";
-        static string Folder2 = @"C:\2\";
-        static string newFolder = @"C:\2\old\";
+        static string Folder2 = @"\\172.27.1.8\wailberis\";
+        static string newFolder = @"\\172.27.1.8\wailberis\old_wailberis\";
         static SqlConnection sqlConnect = new SqlConnection(connectionString);
         static void Main(string[] args)
         {
