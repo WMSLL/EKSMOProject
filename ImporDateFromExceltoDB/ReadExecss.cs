@@ -35,14 +35,14 @@ namespace ImporDateFromExceltoDB
                     {
                         orders = "!!!";
                     }
-                    else
+                    if (cols == 3)
                     {
-                        if (excelRange.Cells.Value2[i, 3]!=null)
+                        if (excelRange.Cells.Value2[i, 3] != null)
                         {
                             orders = excelRange.Cells.Value2[i, 3].ToString();
                         }
-                       
                     }
+                    
                     if (excelRange.Cells.Value2[i, 1]!=null && excelRange.Cells.Value2[i, 2]!=null && orders!=null)
                     {
                         myNewRow["Barcodes"] = excelRange.Cells.Value2[i, 1].ToString(); // .ToString(); //string

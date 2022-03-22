@@ -13,32 +13,43 @@ namespace ImporDateFromExceltoDB
         static string connectionString = @"Data Source=172.27.1.25\SRVSQL;Initial Catalog=ILS;Persist Security Info=True;User ID=szkoadmin;Password=#t1h2u3$;";
         static string Folder2 = @"\\172.27.1.8\wailberis\";
         static string newFolder = @"\\172.27.1.8\wailberis\old_wailberis\";
+        //static string Folder2 = @"C:\Users\Виктор\OneDrive\Рабочий стол\Новая папка\";
+        //static string newFolder = @"C:\Users\Виктор\OneDrive\Рабочий стол\Новая папка\old_wailberis\";
         static SqlConnection sqlConnect = new SqlConnection(connectionString);
         static void Main(string[] args)
         {
-            System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
-            foreach (var p in processes)
+           
+            sqlConnect.Open();
+          //  Timer timer = new Timer(TimerCallback, null, 0, 60_000);
+          //  Console.ReadLine();
+                while (true)
             {
-                if (!string.IsNullOrEmpty(p.ProcessName))
+                TimerCallback();
+                Thread.Sleep(300_000);
+            }
+            static void TimerCallback()
+            {
+                System.Diagnostics.Process[] processes1 = System.Diagnostics.Process.GetProcessesByName("Excel");
+                foreach (var p in processes1)
                 {
-                    try
+                    if (!string.IsNullOrEmpty(p.ProcessName))
                     {
-                        p.Kill();
-                        Console.WriteLine($"kill process EXCEL Successfully");
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine($"kill process EXCEL FAILED!!!!");
+                        try
+                        {
+                            p.Kill();
+                            Console.WriteLine($"kill process EXCEL Successfully");
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine($"kill process EXCEL FAILED!!!!");
+                        }
                     }
                 }
-            }
-            sqlConnect.Open();
-            Timer timer = new Timer(TimerCallback, null, 0, 300_000);
-            Console.ReadLine();
-            static void TimerCallback(Object o)
-            {
+
+                DateTimeOffset dateStart=default;
+                  dateStart = DateTimeOffset.Now;
                 ReadExecss readExecss = new ReadExecss();
-                Console.WriteLine("Start");
+                Console.WriteLine($"Start  {dateStart}");
                 var dir = new DirectoryInfo(Folder2); // папка с файлами 
                 foreach (FileInfo file in dir.GetFiles())
                 {
@@ -96,9 +107,13 @@ namespace ImporDateFromExceltoDB
                         }
                     }
                 }
-                Console.WriteLine("Stop");
-                Console.ReadKey();
+                DateTimeOffset dateStop = default;
+                dateStop = DateTimeOffset.Now;
+                Console.WriteLine($"Stop {dateStop}");
+
+                //Console.ReadKey();
             }
+          
         }
     }
 
