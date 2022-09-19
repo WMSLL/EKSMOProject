@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SVGtoZPL22", "SVGtoZPL22\SV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Тест печати", "Тест печати\Тест печати.csproj", "{4C984FB2-849F-4745-B262-204ED264B5AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonOtXrist1", "LessonOtXrist1\LessonOtXrist1.csproj", "{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{4C984FB2-849F-4745-B262-204ED264B5AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C984FB2-849F-4745-B262-204ED264B5AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C984FB2-849F-4745-B262-204ED264B5AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
