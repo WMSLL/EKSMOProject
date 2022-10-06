@@ -103,7 +103,16 @@ namespace ImporDateFromExceltoDB
                         }
                         catch (System.IO.FileNotFoundException)
                         {
-                            Console.WriteLine($"In folder {Folder2 + filename + typeFile} file not faund");
+                            try
+                            {
+                                Console.WriteLine($"In folder {Folder2 + filename + typeFile} file not faund");
+                            }
+                            catch (Exception e)
+                            {
+
+                                Console.WriteLine($" {e}");
+                            }
+                            
                         }
                     }
                 }
