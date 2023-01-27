@@ -18,11 +18,11 @@ namespace ImporDateFromExceltoDB
         static SqlConnection sqlConnect = new SqlConnection(connectionString);
         static void Main(string[] args)
         {
-           
+
             sqlConnect.Open();
-          //  Timer timer = new Timer(TimerCallback, null, 0, 60_000);
-          //  Console.ReadLine();
-                while (true)
+            //  Timer timer = new Timer(TimerCallback, null, 0, 60_000);
+            //  Console.ReadLine();
+            while (true)
             {
                 TimerCallback();
                 Thread.Sleep(300_000);
@@ -46,27 +46,44 @@ namespace ImporDateFromExceltoDB
                     }
                 }
 
-                DateTimeOffset dateStart=default;
-                  dateStart = DateTimeOffset.Now;
+                DateTimeOffset dateStart = default;
+                dateStart = DateTimeOffset.Now;
                 ReadExecss readExecss = new ReadExecss();
                 Console.WriteLine($"Start  {dateStart}");
                 var dir = new DirectoryInfo(Folder2); // папка с файлами 
-                foreach (FileInfo file in dir.GetFiles())
+                try
                 {
-                    DateTimeOffset date = DateTimeOffset.Now;
-                    var typeFile = Path.GetExtension(file.FullName);
-                    var filename = Path.GetFileNameWithoutExtension(file.Name);
-                    if (typeFile == ".xlsx" || typeFile == ".xls")
+
+
+                    foreach (FileInfo file in dir.GetFiles())
                     {
-                        Console.WriteLine($"Read EXCEL");
-                        readExecss.ReadExel(Folder2 + filename + typeFile);
-                        var dataRage = readExecss.Data;
-                        foreach (DataRow dr in dataRage.Rows)
+                        DateTimeOffset date = DateTimeOffset.Now;
+                        string typeFile = "";
+                        string filename = "";
+
+                        try
                         {
-                            var t0 = dr[0].ToString();
-                            var t1 = dr[1].ToString();
-                            var t2 = dr[2].ToString();
-                            var sqlExpression = $@"if Exists(Select *From [EKS_OrderSSCCChildrenWorld] where item=LTRIM(RTRIM(REPLACE(REPLACE(REPLACE(REPLACE('{t0}', CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''))) and [code]=LTRIM(RTRIM(REPLACE(REPLACE(REPLACE(REPLACE('{t1}', CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''))) ) begin
+                            typeFile = Path.GetExtension(file.FullName);
+                            filename = Path.GetFileNameWithoutExtension(file.Name);
+                        }
+                        catch (Exception e)
+                        {
+
+                            Console.WriteLine(e);
+                            continue;
+                        }
+
+                        if (typeFile == ".xlsx" || typeFile == ".xls")
+                        {
+                            Console.WriteLine($"Read EXCEL");
+                            readExecss.ReadExel(Folder2 + filename + typeFile);
+                            var dataRage = readExecss.Data;
+                            foreach (DataRow dr in dataRage.Rows)
+                            {
+                                var t0 = dr[0].ToString();
+                                var t1 = dr[1].ToString();
+                                var t2 = dr[2].ToString();
+                                var sqlExpression = $@"if Exists(Select *From [EKS_OrderSSCCChildrenWorld] where item=LTRIM(RTRIM(REPLACE(REPLACE(REPLACE(REPLACE('{t0}', CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''))) and [code]=LTRIM(RTRIM(REPLACE(REPLACE(REPLACE(REPLACE('{t1}', CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''))) ) begin
                                                                                                            return
                                                                                                            end 
                                                                                else
@@ -74,47 +91,53 @@ namespace ImporDateFromExceltoDB
                                                                                insert into [EKS_OrderSSCCChildrenWorld] ([item],	[code],[OrderId] ) values (LTRIM(RTRIM(REPLACE(REPLACE(REPLACE(REPLACE('{t0}', CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''))),
                                                                               LTRIM(RTRIM(REPLACE(REPLACE(REPLACE(REPLACE('{t1}', CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''))) ,LTRIM(RTRIM(REPLACE(REPLACE(REPLACE(REPLACE('{t2}', CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''))) )
                                                                                end";
-                            Console.WriteLine($"item: '{t0}', Code: '{t1}' ,Orders: '{t2}' ");
-                            SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
-                            command.ExecuteNonQuery();
-                        }
-                        Console.WriteLine($"kill process EXCEL");
-                        System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
-                        foreach (var p in processes)
-                        {
-                            if (!string.IsNullOrEmpty(p.ProcessName))
+                                Console.WriteLine($"item: '{t0}', Code: '{t1}' ,Orders: '{t2}' ");
+                                SqlCommand command = new SqlCommand(sqlExpression, sqlConnect);
+                                command.ExecuteNonQuery();
+                            }
+                            Console.WriteLine($"kill process EXCEL");
+                            System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
+                            foreach (var p in processes)
+                            {
+                                if (!string.IsNullOrEmpty(p.ProcessName))
+                                {
+                                    try
+                                    {
+                                        p.Kill();
+                                        Console.WriteLine($"kill process EXCEL Successfully");
+                                    }
+                                    catch (Exception)
+                                    {
+                                        Console.WriteLine($"kill process EXCEL FAILED!!!!");
+                                    }
+                                }
+                            }
+                            Console.WriteLine($"start transfer file");
+                            try
+                            {
+                                File.Move(Folder2 + filename + typeFile, newFolder + filename + date.ToString().Replace(":", "_").Replace(" ", "") + typeFile);
+                                Console.WriteLine(Folder2 + filename + typeFile + " Transfer complict");
+                            }
+                            catch (System.IO.FileNotFoundException)
                             {
                                 try
                                 {
-                                    p.Kill();
-                                    Console.WriteLine($"kill process EXCEL Successfully");
+                                    Console.WriteLine($"In folder {Folder2 + filename + typeFile} file not faund");
                                 }
-                                catch (Exception)
+                                catch (Exception e)
                                 {
-                                    Console.WriteLine($"kill process EXCEL FAILED!!!!");
-                                }
-                            }
-                        }
-                        Console.WriteLine($"start transfer file");
-                        try
-                        {
-                            File.Move(Folder2 + filename + typeFile, newFolder + filename + date.ToString().Replace(":", "_").Replace(" ", "") + typeFile);
-                            Console.WriteLine(Folder2 + filename + typeFile + " Transfer complict");
-                        }
-                        catch (System.IO.FileNotFoundException)
-                        {
-                            try
-                            {
-                                Console.WriteLine($"In folder {Folder2 + filename + typeFile} file not faund");
-                            }
-                            catch (Exception e)
-                            {
 
-                                Console.WriteLine($" {e}");
+                                    Console.WriteLine($" {e}");
+                                }
+
                             }
-                            
                         }
                     }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error {e}");
+
                 }
                 DateTimeOffset dateStop = default;
                 dateStop = DateTimeOffset.Now;
@@ -122,7 +145,6 @@ namespace ImporDateFromExceltoDB
 
                 //Console.ReadKey();
             }
-          
         }
     }
 
