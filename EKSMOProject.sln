@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30204.135
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImporDateFromExceltoDB", "ImporDateFromExceltoDB\ImporDateFromExceltoDB.csproj", "{1CD85900-94F5-424F-97E0-B5C0106B7D17}"
 EndProject
@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SVGtoZPL22", "SVGtoZPL22\SV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Тест печати", "Тест печати\Тест печати.csproj", "{4C984FB2-849F-4745-B262-204ED264B5AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonOtXrist1", "LessonOtXrist1\LessonOtXrist1.csproj", "{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LessonOtXrist1", "LessonOtXrist1\LessonOtXrist1.csproj", "{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeywordBot", "KeywordBot\KeywordBot.csproj", "{72BDE305-166B-4099-9740-D82338C84DBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0F9973A-683F-4C75-B21E-C8D24FAEF2E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72BDE305-166B-4099-9740-D82338C84DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72BDE305-166B-4099-9740-D82338C84DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72BDE305-166B-4099-9740-D82338C84DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72BDE305-166B-4099-9740-D82338C84DBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
