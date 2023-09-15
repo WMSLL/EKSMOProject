@@ -10,7 +10,7 @@ namespace ImporDateFromExceltoDB
 {
     class Program
     {
-        static string connectionString = @"Data Source=172.27.1.25\SRVSQL;Initial Catalog=ILS;Persist Security Info=True;User ID=szkoadmin;Password=#t1h2u3$;";
+        static string connectionString = @"Data Source=W-SRVSQL04;Initial Catalog=ILS;Persist Security Info=True;User ID=szkoadmin;Password=#t1h2u3$;";
         static string Folder2 = @"\\whs.local\DFS\services_wms\Wildberries\";  
         static string newFolder = @"\\whs.local\DFS\services_wms\Wildberries\old_wailberis\";
         //static string Folder2 = @"C:\Users\Виктор\OneDrive\Рабочий стол\Новая папка\";
