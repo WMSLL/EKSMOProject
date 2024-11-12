@@ -11,8 +11,8 @@ namespace ImporDateFromExceltoDB
     class Program
     {
         static string connectionString = @"Data Source=W-SRVSQL04;Initial Catalog=ILS;Persist Security Info=True;User ID=szkoadmin;Password=#t1h2u3$;";
-        static string Folder2 = @"\\whs.local\DFS\services_wms\Wildberries\";  
-        static string newFolder = @"\\whs.local\DFS\services_wms\Wildberries\old_wailberis\";
+        static string Folder2 = @$"\\whs.local\DFS\services_wms\Wildberries\";  
+        static string newFolder = @$"\\whs.local\DFS\services_wms\Wildberries\old_wailberis\";
         //static string Folder2 = @"C:\Users\Виктор\OneDrive\Рабочий стол\Новая папка\";
         //static string newFolder = @"C:\Users\Виктор\OneDrive\Рабочий стол\Новая папка\old_wailberis\";
         static SqlConnection sqlConnect = new SqlConnection(connectionString);
@@ -99,27 +99,37 @@ namespace ImporDateFromExceltoDB
                             System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName("Excel");
                             foreach (var p in processes)
                             {
+                                
                                 if (!string.IsNullOrEmpty(p.ProcessName))
                                 {
                                     try
                                     {
+                                        
                                         p.Kill();
                                         Console.WriteLine($"kill process EXCEL Successfully");
+                                       
                                     }
                                     catch (Exception)
                                     {
                                         Console.WriteLine($"kill process EXCEL FAILED!!!!");
+                                      
                                     }
                                 }
                             }
                             Console.WriteLine($"start transfer file");
                             try
                             {
-                                File.Move(Folder2 + filename + typeFile, newFolder + filename + date.ToString().Replace(":", "_").Replace(" ", "") + typeFile);
+                                
+                                Console.WriteLine(@$" {Folder2 + filename + typeFile}");
+                                Console.WriteLine(@$" {newFolder + filename + typeFile}");
+
+                                File.Move(Folder2 + filename + typeFile, newFolder + filename + typeFile,true);
+                           
                                 Console.WriteLine(Folder2 + filename + typeFile + " Transfer complict");
                             }
-                            catch (System.IO.FileNotFoundException)
+                            catch (System.IO.FileNotFoundException ее)
                             {
+                              
                                 try
                                 {
                                     Console.WriteLine($"In folder {Folder2 + filename + typeFile} file not faund");
@@ -142,7 +152,6 @@ namespace ImporDateFromExceltoDB
                 DateTimeOffset dateStop = default;
                 dateStop = DateTimeOffset.Now;
                 Console.WriteLine($"Stop {dateStop}");
-
                 //Console.ReadKey();
             }
         }
