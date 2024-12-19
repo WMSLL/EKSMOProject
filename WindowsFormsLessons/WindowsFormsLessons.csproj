@@ -33,11 +33,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v15.1">
+      <HintPath>DevExpress\DevExpress.BonusSkins.v15.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v13.1, Version=13.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\DevExpress_Winform_Controls_13.1.12.1.0.0\lib\DevExpress.Data.v13.1.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Data.v15.1">
+      <HintPath>DevExpress\DevExpress.Data.v15.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Office.v13.1.Core, Version=13.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\DevExpress_Winform_Controls_13.1.12.1.0.0\lib\DevExpress.Office.v13.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.1.Core">
+      <HintPath>DevExpress\DevExpress.Printing.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v15.1.Core">
+      <HintPath>DevExpress\DevExpress.Sparkline.v15.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Spreadsheet.v13.1.Core, Version=13.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\DevExpress_Winform_Controls_13.1.12.1.0.0\lib\DevExpress.Spreadsheet.v13.1.Core.dll</HintPath>
@@ -45,14 +57,29 @@
     <Reference Include="DevExpress.Utils.v13.1, Version=13.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\DevExpress_Winform_Controls_13.1.12.1.0.0\lib\DevExpress.Utils.v13.1.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Utils.v15.1">
+      <HintPath>DevExpress\DevExpress.Utils.v15.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraBars.v13.1, Version=13.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\DevExpress_Winform_Controls_13.1.12.1.0.0\lib\DevExpress.XtraBars.v13.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v13.1, Version=13.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\DevExpress_Winform_Controls_13.1.12.1.0.0\lib\DevExpress.XtraEditors.v13.1.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.1">
+      <HintPath>DevExpress\DevExpress.XtraEditors.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.1">
+      <HintPath>DevExpress\DevExpress.XtraGrid.v15.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraLayout.v13.1, Version=13.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\DevExpress_Winform_Controls_13.1.12.1.0.0\lib\DevExpress.XtraLayout.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v15.1">
+      <HintPath>DevExpress\DevExpress.XtraLayout.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v15.1">
+      <HintPath>DevExpress\DevExpress.XtraPrinting.v15.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraSpreadsheet.v13.1, Version=13.1.12.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\DevExpress_Winform_Controls_13.1.12.1.0.0\lib\DevExpress.XtraSpreadsheet.v13.1.dll</HintPath>
@@ -78,6 +105,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
