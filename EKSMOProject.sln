@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeywordBot", "KeywordBot\Ke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsLessons", "WindowsFormsLessons\WindowsFormsLessons.csproj", "{B038E8A3-0F06-473A-AA5C-A56131133889}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadyPDFAndEdit", "ReadyPDFAndEdit\ReadyPDFAndEdit.csproj", "{FBA6EFF5-3A60-4CC0-A237-D54172CF2BD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFunctions", "CustomFunctions\CustomFunctions.csproj", "{20EDE128-9121-4263-AE06-F49730130A8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{B038E8A3-0F06-473A-AA5C-A56131133889}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B038E8A3-0F06-473A-AA5C-A56131133889}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B038E8A3-0F06-473A-AA5C-A56131133889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBA6EFF5-3A60-4CC0-A237-D54172CF2BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBA6EFF5-3A60-4CC0-A237-D54172CF2BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBA6EFF5-3A60-4CC0-A237-D54172CF2BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBA6EFF5-3A60-4CC0-A237-D54172CF2BD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20EDE128-9121-4263-AE06-F49730130A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20EDE128-9121-4263-AE06-F49730130A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20EDE128-9121-4263-AE06-F49730130A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20EDE128-9121-4263-AE06-F49730130A8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
