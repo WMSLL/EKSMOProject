@@ -132,9 +132,13 @@ namespace CustomFunctions
             {
                 return value - 300;
             }
-            else if (value >= 600 + 1 && value <= 1200)
+            else if (value >= 600 + 1 && value <= 900)
             {
                 return value - 600;
+            }
+            else if (value >= 900 + 1 && value <= 1200)
+            {
+                return value - 900;
             }
             else if (value >= 1200 + 1 && value <= 1600)
             {
